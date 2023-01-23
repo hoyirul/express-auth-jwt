@@ -4,7 +4,7 @@ const v = new Validator();
 
 // for get all data from examples table
 const index = async (req, res) => {
-  const response = await User.findAll({include: Role});
+  const response = await Role.findAll({include: User, as: 'users'});
 
   res.status(200).json({
     message: true,

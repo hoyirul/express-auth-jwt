@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', { timestamps: false });
   const Role = sequelize.define('Role', {
     id: {
       type: DataTypes.BIGINT,
@@ -23,12 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     underscored: false
   });
 
-  Role.associate = (model) => {
-    Role.hasMany(model.User, {
-      as: 'users',
-      foreignKey: 'roleId'
-    });
-  };
+  Role.hasMany(User);
 
   return Role;
 }
